@@ -30,13 +30,15 @@ namespace WorstSMT.Patches {
             QualitySettings.softParticles = false;
             QualitySettings.softVegetation = false;
 
-            // fps limit
             //Application.targetFrameRate = 30;
 
             // lighting
-            foreach (var light in GameObject.FindObjectsOfType<Light>()) {
+            foreach (var light in GameObject.FindObjectsOfType<Light>())
                 light.enabled = false;
-            }
+
+            RenderSettings.fog = false;
+            RenderSettings.ambientIntensity = 0.5f;
+            RenderSettings.ambientMode = AmbientMode.Flat;
 
             // particles
             foreach (var ps in GameObject.FindObjectsOfType<ParticleSystem>()) {
@@ -44,35 +46,59 @@ namespace WorstSMT.Patches {
                 ps.gameObject.SetActive(false);
             }
 
-            // ambient lighting, fog
-            RenderSettings.fog = false;
-            RenderSettings.ambientIntensity = 0.5f;
-            RenderSettings.ambientMode = AmbientMode.Flat;
+            // reflection
+            foreach (var probe in GameObject.FindObjectsOfType<ReflectionProbe>()) {
+                probe.enabled = false;
+                probe.mode = UnityEngine.Rendering.ReflectionProbeMode.Custom;
+            }
 
-            // map shadows (optional, commented out)
+            // lights
+            foreach (var lp in GameObject.FindObjectsOfType<LightProbeGroup>())
+                lp.enabled = false;
+
+            // lens flare 
+            foreach (var lf in GameObject.FindObjectsOfType<LensFlare>())
+                lf.enabled = false;
+
+            // terrain tweak
+            foreach (var terrain in GameObject.FindObjectsOfType<Terrain>()) {
+                terrain.detailObjectDistance = 0f;
+                terrain.treeDistance = 0f;
+                terrain.heightmapPixelError = 200; // makes terrain blocky but fast, lower=faster
+                terrain.basemapDistance = 0f;
+            }
+
+            // skin mesh tweak
+            foreach (var skinned in GameObject.FindObjectsOfType<SkinnedMeshRenderer>())
+                skinned.updateWhenOffscreen = false; // lower CPU usage
+
+            // camera tweaks // broken
+            foreach (var cam in GameObject.FindObjectsOfType<Camera>()) {
+                cam.useOcclusionCulling = false;    
+                cam.farClipPlane = 0.01f;           
+                cam.allowHDR = false;               
+                cam.allowMSAA = false;              
+            }
+
+            // audio channel limiter
+            var allListeners = GameObject.FindObjectsOfType<AudioListener>();
+            for (int i = 1; i < allListeners.Length; i++)
+                allListeners[i].enabled = false; // keep only one
+
+            // physics shit
+            Time.fixedDeltaTime = 0.05f; // reduce physics update frequency default was 0.02
+            Physics.defaultSolverIterations = 4; // default was 6, lower = better
+            Physics.defaultSolverVelocityIterations = 1; // default is 2
+
+            // map shadow renderer
             //foreach (var rend in GameObject.FindObjectsOfType<Renderer>())
             //{
             //    rend.shadowCastingMode = ShadowCastingMode.Off;
             //    rend.receiveShadows = false;
             //}
 
-            // reflection
-            foreach (var probe in GameObject.FindObjectsOfType<ReflectionProbe>()) {
-                probe.enabled = false;
-            }
-
-            // light probes
-            foreach (var lp in GameObject.FindObjectsOfType<LightProbeGroup>()) {
-                lp.enabled = false;
-            }
-
-            // lens flare
-            foreach (var lf in GameObject.FindObjectsOfType<LensFlare>()) {
-                lf.enabled = false;
-            }
-
-            // resolution
-            // Screen.SetResolution(800, 600, FullScreenMode.Windowed);
+            // force screen reso
+            //Screen.SetResolution(800, 600, FullScreenMode.Windowed);
         }
     }
 }

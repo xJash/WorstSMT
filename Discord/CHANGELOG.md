@@ -1,3 +1,5 @@
+## V1.0.0
+
 Modular Configuration System
 Fully configurable via BepInEx/config/WorstsSMT.cfg. Toggle each performance tweak independently.
 

@@ -1,0 +1,9 @@
+{
+  "name": "WorstsSMT",
+  "version_number": "1.0.0",
+  "website_url": "",
+  "description": "Modular Configuration System - Fully configurable via BepInEx/config/WorstsSMT.cfg. Toggle each performance tweak independently.",
+  "dependencies": [
+    "BepInEx-BepInExPack-5.4.2100"
+  ]
+}

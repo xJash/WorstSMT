@@ -42,6 +42,27 @@
     <Reference Include="Rewired_Core" Private="False" Publicize="true">
       <HintPath>C:\Program Files (x86)\Steam\steamapps\common\Supermarket Together\Supermarket Together_Data\Managed\Rewired_Core.dll</HintPath>
     </Reference>
+    <Reference Include="Unity.RenderPipeline.Universal.ShaderLibrary">
+      <HintPath>..\..\..\..\Program Files (x86)\Steam\steamapps\common\Supermarket Together\Supermarket Together_Data\Managed\Unity.RenderPipeline.Universal.ShaderLibrary.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.RenderPipelines.Core.Runtime">
+      <HintPath>..\..\..\..\Program Files (x86)\Steam\steamapps\common\Supermarket Together\Supermarket Together_Data\Managed\Unity.RenderPipelines.Core.Runtime.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.RenderPipelines.Core.ShaderLibrary">
+      <HintPath>..\..\..\..\Program Files (x86)\Steam\steamapps\common\Supermarket Together\Supermarket Together_Data\Managed\Unity.RenderPipelines.Core.ShaderLibrary.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.RenderPipelines.ShaderGraph.ShaderGraphLibrary">
+      <HintPath>..\..\..\..\Program Files (x86)\Steam\steamapps\common\Supermarket Together\Supermarket Together_Data\Managed\Unity.RenderPipelines.ShaderGraph.ShaderGraphLibrary.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.RenderPipelines.Universal.2D.Runtime">
+      <HintPath>..\..\..\..\Program Files (x86)\Steam\steamapps\common\Supermarket Together\Supermarket Together_Data\Managed\Unity.RenderPipelines.Universal.2D.Runtime.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.RenderPipelines.Universal.Runtime">
+      <HintPath>..\..\..\..\Program Files (x86)\Steam\steamapps\common\Supermarket Together\Supermarket Together_Data\Managed\Unity.RenderPipelines.Universal.Runtime.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.RenderPipelines.Universal.Shaders">
+      <HintPath>..\..\..\..\Program Files (x86)\Steam\steamapps\common\Supermarket Together\Supermarket Together_Data\Managed\Unity.RenderPipelines.Universal.Shaders.dll</HintPath>
+    </Reference>
     <Reference Include="Unity.TextMeshPro">
       <HintPath>C:\Program Files (x86)\Steam\steamapps\common\Supermarket Together\Supermarket Together_Data\Managed\Unity.TextMeshPro.dll</HintPath>
     </Reference>
@@ -57,9 +78,17 @@
     </Reference>
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Nexus\BepInEx\plugins\" />
+  </ItemGroup>
+
   <ProjectExtensions>
     <VisualStudio>
       <UserProperties thunderstore_4manifest_1json__JsonSchema="" />
     </VisualStudio>
   </ProjectExtensions>
+
+  <Target Name="PostBuild" AfterTargets="PostBuildEvent">
+    <Exec Command="xcopy /Y &quot;$(TargetPath)&quot; &quot;C:\Program Files (x86)\Steam\steamapps\common\Supermarket Together\BepInEx\plugins&quot;&#xD;&#xA;" />
+  </Target>
 </Project>

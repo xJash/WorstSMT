@@ -8,10 +8,10 @@ namespace WorstsSMT.Patches {
     [HarmonyPatch(typeof(FirstPersonController), "Start")]
     public class LateUpdateRaycastPatch {
         static void Postfix() {
-            if (!WorstsSMT.EnableMod.Value) return;
+            if (!WorstsSMT.EnableMod.Value)
+                return;
 
-            if (WorstsSMT.ApplyBaseQualityLevel.Value)
-                QualitySettings.SetQualityLevel(0, true);
+            if (WorstsSMT.ApplyBaseQualityLevel.Value) QualitySettings.SetQualityLevel(0, true);
 
             if (WorstsSMT.DisableShadows.Value) {
                 QualitySettings.shadows = ShadowQuality.Disable;
@@ -20,21 +20,17 @@ namespace WorstsSMT.Patches {
                 QualitySettings.shadowDistance = 0f;
             }
 
-            if (WorstsSMT.DisableAntialiasing.Value)
-                QualitySettings.antiAliasing = 0;
+            if (WorstsSMT.DisableAntialiasing.Value) QualitySettings.antiAliasing = 0;
 
-            if (WorstsSMT.DisableAnisotropic.Value)
-                QualitySettings.anisotropicFiltering = AnisotropicFiltering.Disable;
+            if (WorstsSMT.DisableAnisotropic.Value) QualitySettings.anisotropicFiltering = AnisotropicFiltering.Disable;
 
             QualitySettings.globalTextureMipmapLimit = WorstsSMT.TextureMipmapLimit.Value;
 
-            if (WorstsSMT.DisableVSync.Value)
-                QualitySettings.vSyncCount = 0;
+            if (WorstsSMT.DisableVSync.Value) QualitySettings.vSyncCount = 0;
 
             QualitySettings.lodBias = WorstsSMT.LODBias.Value;
 
-            if (WorstsSMT.DisableReflectionProbes.Value)
-                QualitySettings.realtimeReflectionProbes = false;
+            if (WorstsSMT.DisableReflectionProbes.Value) QualitySettings.realtimeReflectionProbes = false;
 
             if (WorstsSMT.DisableSoftEffects.Value) {
                 QualitySettings.softParticles = false;
@@ -42,13 +38,11 @@ namespace WorstsSMT.Patches {
             }
 
             if (WorstsSMT.DisableSceneLights.Value) {
-                foreach (var light in GameObject.FindObjectsOfType<Light>())
-                    light.enabled = false;
+                foreach (var light in GameObject.FindObjectsOfType<Light>()) light.enabled = false;
             }
 
             if (WorstsSMT.DisableLightCookies.Value) {
-                foreach (var light in GameObject.FindObjectsOfType<Light>())
-                    light.cookie = null;
+                foreach (var light in GameObject.FindObjectsOfType<Light>()) light.cookie = null;
             }
 
             if (WorstsSMT.DisableFogAndAmbient.Value) {
@@ -72,13 +66,11 @@ namespace WorstsSMT.Patches {
             }
 
             if (WorstsSMT.DisableLightProbes.Value) {
-                foreach (var lp in GameObject.FindObjectsOfType<LightProbeGroup>())
-                    lp.enabled = false;
+                foreach (var lp in GameObject.FindObjectsOfType<LightProbeGroup>()) lp.enabled = false;
             }
 
             if (WorstsSMT.DisableLensFlares.Value) {
-                foreach (var lf in GameObject.FindObjectsOfType<LensFlare>())
-                    lf.enabled = false;
+                foreach (var lf in GameObject.FindObjectsOfType<LensFlare>()) lf.enabled = false;
             }
 
             if (WorstsSMT.DisableTerrainDetails.Value) {
@@ -97,29 +89,23 @@ namespace WorstsSMT.Patches {
                 }
             }
 
-            foreach (var skinned in GameObject.FindObjectsOfType<SkinnedMeshRenderer>())
-                skinned.updateWhenOffscreen = false;
+            foreach (var skinned in GameObject.FindObjectsOfType<SkinnedMeshRenderer>()) skinned.updateWhenOffscreen = false;
 
             if (WorstsSMT.DisableWindZones.Value) {
-                foreach (var wind in GameObject.FindObjectsOfType<WindZone>())
-                    wind.gameObject.SetActive(false); 
+                foreach (var wind in GameObject.FindObjectsOfType<WindZone>()) wind.gameObject.SetActive(false);
             }
 
             if (WorstsSMT.DisableCloth.Value) {
-                foreach (var cloth in GameObject.FindObjectsOfType<Cloth>())
-                    cloth.enabled = false;
+                foreach (var cloth in GameObject.FindObjectsOfType<Cloth>()) cloth.enabled = false;
             }
 
             if (WorstsSMT.DisableNavMeshAgents.Value) {
-                foreach (var agent in GameObject.FindObjectsOfType<NavMeshAgent>())
-                    agent.enabled = false;
-                foreach (var obstacle in GameObject.FindObjectsOfType<NavMeshObstacle>())
-                    obstacle.enabled = false;
+                foreach (var agent in GameObject.FindObjectsOfType<NavMeshAgent>()) agent.enabled = false;
+                foreach (var obstacle in GameObject.FindObjectsOfType<NavMeshObstacle>()) obstacle.enabled = false;
             }
 
             if (WorstsSMT.DisableProjectors.Value) {
-                foreach (var projector in GameObject.FindObjectsOfType<Projector>())
-                    projector.enabled = false;
+                foreach (var projector in GameObject.FindObjectsOfType<Projector>()) projector.enabled = false;
             }
 
             Shader.globalMaximumLOD = WorstsSMT.ShaderLOD.Value;
@@ -128,8 +114,7 @@ namespace WorstsSMT.Patches {
                 ScalableBufferManager.ResizeBuffers(WorstsSMT.RenderScale.Value, WorstsSMT.RenderScale.Value);
 
             if (WorstsSMT.DisablePostProcessing.Value) {
-                foreach (var volume in GameObject.FindObjectsOfType<Volume>())
-                    volume.enabled = false;
+                foreach (var volume in GameObject.FindObjectsOfType<Volume>()) volume.enabled = false;
             }
 
             if (WorstsSMT.DisableSkybox.Value) {
@@ -140,17 +125,13 @@ namespace WorstsSMT.Patches {
                 }
             }
 
-            if (WorstsSMT.LowerAudioSampleRate.Value)
-                AudioSettings.outputSampleRate = 22050;
+            if (WorstsSMT.LowerAudioSampleRate.Value) AudioSettings.outputSampleRate = 22050;
 
-            if (WorstsSMT.MaxQueuedFrames.Value >= 0)
-                QualitySettings.maxQueuedFrames = WorstsSMT.MaxQueuedFrames.Value;
+            if (WorstsSMT.MaxQueuedFrames.Value >= 0) QualitySettings.maxQueuedFrames = WorstsSMT.MaxQueuedFrames.Value;
 
-            if (WorstsSMT.AggressiveGC.Value)
-                System.GC.Collect();
+            if (WorstsSMT.AggressiveGC.Value) System.GC.Collect();
 
-            if (WorstsSMT.TimeScale.Value < 1f)
-                Time.timeScale = WorstsSMT.TimeScale.Value;
+            if (WorstsSMT.TimeScale.Value < 1f) Time.timeScale = WorstsSMT.TimeScale.Value;
 
             foreach (var cam in GameObject.FindObjectsOfType<Camera>()) {
                 if (cam.gameObject.GetComponent<CameraFixer>() == null) {
@@ -160,8 +141,7 @@ namespace WorstsSMT.Patches {
 
             if (WorstsSMT.LimitAudioListeners.Value) {
                 var listeners = GameObject.FindObjectsOfType<AudioListener>();
-                for (int i = 1; i < listeners.Length; i++)
-                    listeners[i].enabled = false;
+                for (int i = 1; i < listeners.Length; i++) listeners[i].enabled = false;
             }
 
             Time.fixedDeltaTime = WorstsSMT.FixedDeltaTime.Value;
@@ -177,25 +157,18 @@ namespace WorstsSMT.Patches {
 
         void Start() {
             _cam = GetComponent<Camera>();
-            if (_cam != null && _cam.enabled) {
-                Debug.Log($"[WorstsSMT] CameraFixer attached to: {_cam.name}");
-            }
+            if (_cam != null && _cam.enabled) Debug.Log($"[WorstsSMT] CameraFixer attached to: {_cam.name}");
         }
 
         void OnPreRender() {
             if (!WorstsSMT.EnableMod.Value || _cam == null || !_cam.enabled) return;
             if (_cam != Camera.main) return;
 
-            if (WorstsSMT.DisableOcclusionCulling.Value)
-                _cam.useOcclusionCulling = false;
-            if (WorstsSMT.DisableHDR.Value)
-                _cam.allowHDR = false;
-            if (WorstsSMT.DisableMSAA.Value)
-                _cam.allowMSAA = false;
-            if (Mathf.Abs(_cam.farClipPlane - WorstsSMT.CameraFarClipPlane.Value) > 0.01f)
-                _cam.farClipPlane = WorstsSMT.CameraFarClipPlane.Value;
-            if (_cam.nearClipPlane > 0.1f)
-                _cam.nearClipPlane = 0.01f;
+            if (WorstsSMT.DisableOcclusionCulling.Value)  _cam.useOcclusionCulling = false;
+            if (WorstsSMT.DisableHDR.Value) _cam.allowHDR = false;
+            if (WorstsSMT.DisableMSAA.Value) _cam.allowMSAA = false;
+            if (Mathf.Abs(_cam.farClipPlane - WorstsSMT.CameraFarClipPlane.Value) > 0.01f) _cam.farClipPlane = WorstsSMT.CameraFarClipPlane.Value;
+            if (_cam.nearClipPlane > 0.1f) _cam.nearClipPlane = 0.01f;
 
             Debug.Log($"Camera: {_cam.name}, Active: {_cam.enabled}, FarClip: {_cam.farClipPlane}, Main: {_cam == Camera.main}");
         }
@@ -204,16 +177,11 @@ namespace WorstsSMT.Patches {
             if (!WorstsSMT.EnableMod.Value || _cam == null || !_cam.enabled) return;
             if (_cam != Camera.main) return;
 
-            if (WorstsSMT.DisableOcclusionCulling.Value)
-                _cam.useOcclusionCulling = false;
-            if (WorstsSMT.DisableHDR.Value)
-                _cam.allowHDR = false;
-            if (WorstsSMT.DisableMSAA.Value)
-                _cam.allowMSAA = false;
-            if (Mathf.Abs(_cam.farClipPlane - WorstsSMT.CameraFarClipPlane.Value) > 0.01f)
-                _cam.farClipPlane = WorstsSMT.CameraFarClipPlane.Value;
-            if (_cam.nearClipPlane > 0.1f)
-                _cam.nearClipPlane = 0.01f;
+            if (WorstsSMT.DisableOcclusionCulling.Value) _cam.useOcclusionCulling = false;
+            if (WorstsSMT.DisableHDR.Value)  _cam.allowHDR = false;
+            if (WorstsSMT.DisableMSAA.Value) _cam.allowMSAA = false;
+            if (Mathf.Abs(_cam.farClipPlane - WorstsSMT.CameraFarClipPlane.Value) > 0.01f) _cam.farClipPlane = WorstsSMT.CameraFarClipPlane.Value;
+            if (_cam.nearClipPlane > 0.1f) _cam.nearClipPlane = 0.01f;
 
             Debug.Log($"Camera: {_cam.name}, Active: {_cam.enabled}, FarClip: {_cam.farClipPlane}, Main: {_cam == Camera.main}");
         }

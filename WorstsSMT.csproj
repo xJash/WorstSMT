@@ -24,12 +24,12 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Reference Include="Assembly-CSharp" Private="False" Publicize="true">
+    <Reference Include="StarterAssets" Private="False" Publicize="true">
       <HintPath>C:\Program Files (x86)\Steam\steamapps\common\Supermarket Together\Supermarket Together_Data\Managed\Unity.StarterAssets.dll</HintPath>
     </Reference>
     <Reference Include="Assembly-CSharp" Private="False" Publicize="true">
       <HintPath>C:\Program Files (x86)\Steam\steamapps\common\Supermarket Together\Supermarket Together_Data\Managed\Assembly-CSharp.dll</HintPath>
-    </Reference>    
+    </Reference>
     <Reference Include="Cinemachine">
       <HintPath>..\..\..\..\Program Files (x86)\Steam\steamapps\common\Supermarket Together\Supermarket Together_Data\Managed\Cinemachine.dll</HintPath>
     </Reference>
@@ -68,7 +68,6 @@
     </Reference>
     <Reference Include="UnityEngine">
       <HintPath>C:\Program Files (x86)\Steam\steamapps\common\Supermarket Together\Supermarket Together_Data\Managed\UnityEngine.dll</HintPath>
-      <!-- Edit this to the actual location -->
     </Reference>
     <Reference Include="UnityEngine.CoreModule">
       <HintPath>C:\Program Files (x86)\Steam\steamapps\common\Supermarket Together\Supermarket Together_Data\Managed\UnityEngine.CoreModule.dll</HintPath>
